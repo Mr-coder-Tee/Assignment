@@ -1,12 +1,25 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Item implements ItemInterface{
 
 	private double price;
-	private String name;
-	private int size;
-	private Date expiryDate;
+	 String name;
+	 int size;
+	 Date expiryDate;
 	
+	public Item(double price,String name,int size,String expiryDate) {
+		try {
+			this.expiryDate=new SimpleDateFormat("dd/mm/yyyy").parse(expiryDate);
+		} catch (ParseException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		this.size=size;
+		this.name=name;
+		this.price=price;
+	}
 	
 	public int viewExpiry() {
 		return 1;
@@ -24,27 +37,4 @@ public class Item implements ItemInterface{
 		this.price=price;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
-
-	public Date getExpiryDate() {
-		return expiryDate;
-	}
-
-	public void setExpiryDate(Date expiryDate) {
-		this.expiryDate = expiryDate;
-	}
 }
